@@ -14,7 +14,7 @@ At launch, the core CID protocol consists of four smart contracts:
 
 Within Canto Identity Protocol, ERC721 NFTs called [cidNFTs](cidNFTs.md) represent individual on-chain identities. Users can mint cidNFTs for free by calling the `mint` method on `CidNFT.sol`.
 
-Users must [register](cidNFTs.md#registering-and-retrieving-cidnfts) a cidNFT as their canonical on-chain identity with `AddressRegistry.sol`.
+Users must [register](cidNFTs.md#registering-cidnfts) a cidNFT as their canonical on-chain identity with `AddressRegistry.sol`.
 
 ## Subprotocols
 

@@ -6,7 +6,7 @@ nav_order: 2
 
 Canto Identity Subprotocols are loosely defined smart contracts which use NFTs called subprotocolNFTs to represent identity traits. Users include these identity traits in their on-chain identities by adding pointers to them to their cidNFTs.
 
-The interface for Subprotocols is based on the [Solmate ERC721 standard](https://github.com/transmissions11/solmate/blob/main/src/tokens/ERC721.sol) and is outlined in `CidSubprotocolNFT.sol`:
+The interface for Subprotocols implements the ERC721 standard and is outlined in `CidSubprotocolNFT.sol`:
 
 ```solidity
 import "solmate/tokens/ERC721.sol";
@@ -34,8 +34,8 @@ Subprotocol creators can introduce arbitrary minting and ownership logic to thei
 Subprotocols must be registered with `SubprotocolRegistry.sol` for a one-time fee in order to be used within Canto Identity Protocol. The `register` function takes the following inputs:
 
 * `_ordered`, a boolean specifiying whether the Subprotocol uses the `ordered` Association Type
-* `_primary`, a boolean specifiying whether the Subprotocol uses the `ordered` Association Type
-* `_active`, a boolean specifiying whether the Subprotocol uses the `ordered` Association Type
+* `_primary`, a boolean specifiying whether the Subprotocol uses the `primary` Association Type
+* `_active`, a boolean specifiying whether the Subprotocol uses the `active` Association Type
 * `_nftAddress`, the smart contract address of the Subprotocol
 * `_name`, a unique name for the Subprotocol
 * `_fee`, the fee in $NOTE to mint a subprotocolNFT

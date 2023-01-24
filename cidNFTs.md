@@ -27,7 +27,7 @@ The `SubprotocolData` struct is composed of three types corresponding to each of
 
 * The `ordered` type is a mapping which maps indexes (0,1,2...) to subprotocolNFT tokenIds
 * The `primary` type is a tokenId for a single subprotocolNFT
-* the `active` type is a struct consisting of an array of subprotocolNFT tokenIds and a mapping which maps the tokenIds to a non-zero index (1,2...)
+* the `active` type is a struct consisting of an array of subprotocolNFT tokenIds and a mapping used for optimization purposes
 
 ## Reading cidNFTs
 
@@ -51,10 +51,12 @@ The smart contract performs numerous checks before adding the pointer to `cidDat
 
 Users can remove pointers to subprotocolNFTs from their cidNFTs by calling the `remove` function on `CidNFT.sol` with the same inputs.
 
-## Registering and Retrieving cidNFTs
+## Registering cidNFTs
 
 Users register a cidNFT as their canonical on-chain identity with the `register` method on `AddressRegistry.sol`, providing only the cidNFT's tokenId. To remove a registration, users can call the `remove` method.
 
-Note that a wallet can only have one CidNFT registered to its address at any given time.
+Note that a wallet can only have one cidNFT registered to its address at any given time. Calling the `register` method from a wallet address that has already registered a cidNFT will overwrite its existing registration.
+
+## Retrieving cidNFTs
 
 The `getCid` method on `AddressRegistry.sol` retrieves the tokenId of the cidNFT registered to a specified address. If no cidNFT is registered to an address, this method returns `0`.

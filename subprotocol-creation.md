@@ -44,7 +44,7 @@ Subprotocols must be registered with `SubprotocolRegistry.sol` for a one-time fe
 
 For each Subprotcol, subprotocolNFTs associate with cidNFTs according to three mutually inclusive Association Types:
 - `primary`: no more than one subprotocolNFT can be added to a cidNFT
-- `active`: the subprotocolNFTs may be active or inactive at any time
+- `active`: the subprotocolNFTs added to a cidNFT have no order
 - `ordered`: the subprotocolNFTs added to a cidNFT are strictly ordered
 
 The Assocation Types used by a Subprotocol are specified by the Subprotocol creator at registration based on how the Subprotocol is intended to be used.

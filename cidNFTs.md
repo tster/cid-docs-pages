@@ -1,3 +1,7 @@
+---
+nav_order: 1
+---
+
 # Canto Identity NFTs
 
 Canto Identity NFTs (cidNFTs) represent individual on-chain identities. Through nested mappings, they point to subprotocolNFTs representing individual identity traits.

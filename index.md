@@ -1,3 +1,7 @@
+---
+nav_order: 0
+---
+
 # Overview
 
 Canto Identity Protocol (CID) is a permisionless protocol that reinvents the concept of on-chain identity. With CID, the power to control one's on-chain identity is returned to users.

@@ -1,3 +1,7 @@
+---
+nav_order: 2
+---
+
 # Subprotocol Development & Registration
 
 Canto Identity Subprotocols are loosely defined smart contracts which use NFTs called subprotocolNFTs to represent identity traits. Users include these identity traits in their on-chain identities by adding pointers to them to their cidNFTs.

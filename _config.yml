@@ -5,4 +5,5 @@ remote_theme: just-the-docs/just-the-docs
 url: https://tster.github.io/cid-docs-pages
 
 aux_links:
-  Template Repository: https://github.com/tster/cid-docs-pages
+  CID Repo: https://github.com/mkt-market/canto-identity-protocol
+  Docs Repo: https://github.com/tster/cid-docs-pages

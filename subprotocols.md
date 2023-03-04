@@ -1,12 +1,12 @@
 ---
-nav_order: 2
+nav_order: 3
 ---
 
-# Subprotocol Development & Registration
+# Subprotocols
 
-Canto Identity Subprotocols are smart contracts which use NFTs called subprotocolNFTs to represent identity traits. Users include these identity traits in their on-chain identities by adding pointers to them to their cidNFTs.
+Canto Identity Subprotocols are smart contracts which use NFTs (*subprotocolNFTs*) to represent identity traits. Users choose which traits to include in their on-chain identities by adding pointers to them to their cidNFTs.
 
-Subprotocols should implement the ERC721 standard, but there is no strict interface they must conform to. As a result, subprotocol creators can introduce arbitrary minting and ownership logic.
+Subprotocols should implement ERC721, but there is no strict interface they must conform to. As a result, subprotocol creators can introduce arbitrary minting and ownership logic.
 
 ## Subprotocol Registration
 

@@ -7,13 +7,13 @@ nav_order: 0
 Canto Identity Protocol (CID) is a permisionless protocol that reinvents the concept of on-chain identity. With CID, the power to control one's on-chain identity is returned to users.
 
 At launch, the core CID protocol consists of three smart contracts:
-- [`AddressRegistry.sol`](https://github.com/mkt-market/canto-identity-protocol/blob/master/src/AddressRegistry.sol)
 - [`CidNFT.sol`](https://github.com/mkt-market/canto-identity-protocol/blob/master/src/CidNFT.sol)
+- [`AddressRegistry.sol`](https://github.com/mkt-market/canto-identity-protocol/blob/master/src/AddressRegistry.sol)
 - [`SubprotocolRegistry.sol`](https://github.com/mkt-market/canto-identity-protocol/blob/master/src/SubprotocolRegistry.sol)
 
 Within Canto Identity Protocol, ERC721 NFTs called [cidNFTs](cidNFTs.md) represent individual on-chain identities. Users can mint cidNFTs for free by calling the `mint` method on `CidNFT.sol`.
 
-Users must [register](cidNFTs.md#registering-cidnfts) a cidNFT as their canonical on-chain identity with `AddressRegistry.sol`.
+Users must [register](registry.md) a cidNFT as their canonical on-chain identity with `AddressRegistry.sol`.
 
 ## Subprotocols
 

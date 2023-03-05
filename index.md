@@ -19,7 +19,7 @@ Users must [register](registry.md) a cidNFT as their canonical on-chain identity
 
 The core Canto Identity Protocol has no notion of identity traits, such as display name. Instead, it aggregates identity from granular, trait-specific protocols called Subprotocols.
 
-[Subprotocol creation](subprotocols.md) is permissionless. However, subprotocols must be [registered](subprotocols.md#subprotocol-registration) with `SubprotocolRegistry.sol` for a one-time fee in order to be used within Canto Identity Protocol.
+[Subprotocol creation](subprotocols.md) is permissionless. However, Subprotocols must be [registered](subprotocols.md#subprotocol-registration) with `SubprotocolRegistry.sol` for a one-time fee in order to be used within Canto Identity Protocol.
 
 ### subprotocolNFTs
 

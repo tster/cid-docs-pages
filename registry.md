@@ -8,11 +8,21 @@ nav_order: 2
 
 ## Registering cidNFTs
 
-To register a cidNFT to an address, users must call the `register` method on `AddressRegistry.sol`, passing in the cidNFT's tokenId. To remove a registration, users can call the `remove` method.
+To register a cidNFT to an address, users must call the `register` method on `AddressRegistry.sol`, passing in the cidNFT's tokenId.
+
+```solidity
+    function register(uint256 _cidNFTID) external {
+        if (ERC721(cidNFT).ownerOf(_cidNFTID) != msg.sender)
+            // ownerOf reverts if non-existing ID is provided
+            revert NFTNotOwnedByUser(_cidNFTID, msg.sender);
+        cidNFTs[msg.sender] = _cidNFTID;
+        emit CIDNFTAdded(msg.sender, _cidNFTID);
+    }
+```
 
 Note that a wallet can only have one cidNFT registered to its address at any given time. Calling the `register` method from a wallet address that has already registered a cidNFT will overwrite its existing registration.
 
-Transferring a cidNFT to another wallet will remove its existing registration.
+ To remove a registration, users can call the `remove` method. Transferring a cidNFT to another wallet will also remove its existing registration.
 
 ## Address Lookup
 

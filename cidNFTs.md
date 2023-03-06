@@ -12,7 +12,7 @@ On `CidNFT.sol`, the internal mapping `cidData` maps cidNFT tokenIds to Subproto
 mapping(uint256 => mapping(string => SubprotocolData)) internal cidData;
 ```
 
-The `SubprotocolData` struct is composed of three types corresponding to each of the three [Association Types](subprotocol-creation.md#association-types) a Subprotocol may use:
+The `SubprotocolData` struct is composed of three types corresponding to each of the three [Association Types](subprotocols.md#association-types) a Subprotocol may use:
 
 ```solidity
     struct SubprotocolData {
@@ -29,17 +29,35 @@ The `SubprotocolData` struct is composed of three types corresponding to each of
 * The `primary` type is a tokenId for a single subprotocolNFT
 * the `active` type is a struct consisting of an array of subprotocolNFT tokenIds and a mapping used for optimization purposes
 
-## Reading cidNFTs
+## Minting CidNFTs
 
-To retrieve the subprotocolNFTs a cidNFT to points to for a specified Subprotocol, `CidNFT.sol` has three external views – one for each association type:
+To mint a Bio subprotocolNFT, a user calls `mint`:
 
-* `getOrderedData` takes a cidNFT tokenId, Subprotocol name, and index and returns a subprotocolNFT tokenId
-* `getPrimaryData` takes a cidNFT tokenId and Subprotocol name and returns a subprotocolNFT tokenID
-* `getActiveData` takes a cidNFT tokenId and Subprotocol name and returns an array of subprotocolNFT tokenIds
+```solidity
+    function mint(MintAddData[] calldata _addList) external {
+        uint256 tokenToMint = ++numMinted;
+        _mint(msg.sender, tokenToMint); // We do not use _safeMint here on purpose. If a contract calls this method, he expects to get an NFT back
+        for (uint256 i = 0; i < _addList.length; ++i) {
+            MintAddData calldata addData = _addList[i];
+            add(tokenToMint, addData.subprotocolName, addData.key, addData.nftIDToAdd, addData.associationType);
+        }
+    }
+```
+
+Optionally, the user can pass in an array of `MintAddData` structs, which specify subprotocolNFTs to be added immediately:
+
+```solidity
+    struct MintAddData {
+        string subprotocolName;
+        uint256 key;
+        uint256 nftIDToAdd;
+        AssociationType associationType;
+    }
+```
 
 ## Adding and Removing subprotocolNFTs
 
-Users can add pointers to subprotocolNFTs to their cidNFTs by calling the `add` function on `CidNFT.sol`. They must provide:
+Users can add pointers to subprotocolNFTs to their cidNFTs at any time by calling the `add` function on `CidNFT.sol`. They must provide:
 
 * `_cidNFTID`, the tokenId of the cidNFT
 * `_subProtocolName`, the name of the Subprotocol
@@ -51,12 +69,18 @@ The smart contract performs numerous checks before adding the pointer to `cidDat
 
 Users can remove pointers to subprotocolNFTs from their cidNFTs by calling the `remove` function on `CidNFT.sol` with the same inputs.
 
-## Registering cidNFTs
+## Reading cidNFTs
 
-Users register a cidNFT as their canonical on-chain identity with the `register` method on `AddressRegistry.sol`, providing only the cidNFT's tokenId. To remove a registration, users can call the `remove` method.
+To retrieve the subprotocolNFTs a cidNFT to points to for a specified Subprotocol, `CidNFT.sol` has three external views – one for each association type:
 
-Note that a wallet can only have one cidNFT registered to its address at any given time. Calling the `register` method from a wallet address that has already registered a cidNFT will overwrite its existing registration.
+* `getOrderedData` takes a cidNFT tokenId, Subprotocol name, and index and returns a subprotocolNFT tokenId
+* `getPrimaryData` takes a cidNFT tokenId and Subprotocol name and returns a subprotocolNFT tokenId
+* `getActiveData` takes a cidNFT tokenId and Subprotocol name and returns an array of subprotocolNFT tokenIds
 
-## Retrieving cidNFTs
+### Reverse Lookups
 
-The `getCid` method on `AddressRegistry.sol` retrieves the tokenId of the cidNFT registered to a specified address. If no cidNFT is registered to an address, this method returns `0`.
+`cidNFT.sol` also implements reverse lookup views for each of the association types. Given a subprotocolNFT tokenId and  Subprotocol, these methods return a cidNFT tokenId and additional context depending on the association type:
+
+* `getOrderedCIDNFT` returns the index of the queried subprotocolNFT in addition to the cidNFT tokenId
+* `getPrimaryCIDNFT` only returns the cidNFT tokenId
+* `getActiveCIDNFT` returns the position of the queried subprotocolNFT in addition to the cidNFT tokenId

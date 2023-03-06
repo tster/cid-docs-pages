@@ -5,7 +5,7 @@ parent: Subprotocols
 
 # Canto Bio Protocol
 
-Canto Bio Protocol is a barebones Subprotocol that can be used to save a *bio* string in one's on-chain identity. It consists of a single smart contract, `Bio.sol`.
+Canto Bio Protocol is a barebones Subprotocol that can be used to save a *bio* string in one's on-chain identity. It consists of a single smart contract, [`Bio.sol`](https://github.com/mkt-market/canto-bio-protocol/blob/master/src/Bio.sol).
 
 ## Minting
 

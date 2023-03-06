@@ -15,4 +15,6 @@ Upper- and lowercase Latin characters as well as basic punctuation and control c
 
 ## Bio Preview
 
-The `tokenURI` method takes a Bio subprotocolNFT tokenId and renders an on-chain SVG preview of that bio string.
+The `tokenURI` view renders an on-chain SVG preview of the bio string. A newline is automatically added every 40 characters, such that the bio is divided across up to 5 lines.
+
+Note that newlines are not added at continutation bytes, zero-width joiners, or skin tone modifiers.

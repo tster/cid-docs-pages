@@ -19,4 +19,8 @@ The `getPFP` method checks whether the NFT referenced by a PFP subprotocolNFT is
 
 If the NFT is still owned by the expected wallet, this method returns the address of the NFT collection and the tokenId of the NFT. Otherwise, it returns `address(0)` and `0` respectively.
 
-For convenience, there is also a `tokenURI` method which performs this check internally, returning the tokenURI of the referenced NFT if it still owned by the expected wallet, and otherwise reverting.
+## PFP Preview and Metadata
+
+The `tokenURI` view calls `getPFP` internally. If the referenced NFT is owned by the expected wallet, it returns the tokenURI of the referenced NFT. Otherwise, it reverts.
+
+In practice, this means that the PFP subprotocolNFT shares the same metadata (including image) as the referenced NFT if that NFT is owned by the expected wallet.
